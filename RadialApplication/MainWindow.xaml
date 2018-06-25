@@ -1,0 +1,107 @@
+﻿<Window x:Class="RadialApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Controls="clr-namespace:RadialMenu.Controls;assembly=RadialMenu"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RadialApplication"
+        mc:Ignorable="d"
+        Title="Radial Menu" Height="350" Width="350" ShowInTaskbar="False" 
+        AllowsTransparency="True" WindowStyle="None" 
+        PreviewKeyDown="Window_PreviewKeyDown"
+        >
+    <Window.Background>
+        <SolidColorBrush Opacity="0"/>
+    </Window.Background>
+    <Grid >
+        <Controls:RadialMenu IsOpen="True">
+                <Controls:RadialMenu.CentralItem>
+                    <Controls:RadialMenuCentralItem  Click="RadialMenuCentralItem_Click"
+                                                     IsCancel="True" 
+                                                     ToolTip="Cerrar Menu Radial"
+                                                     Style="{DynamicResource FancyRadialMenuCentralItem}" IsDefault="True">
+                    <Image Source="pack://application:,,,/RadialApplication;component/icons/close.png" Height="32"/>
+                    </Controls:RadialMenuCentralItem>
+                </Controls:RadialMenu.CentralItem>
+
+            <Controls:RadialMenuItem Style="{DynamicResource FancyRadialMenuItem}"
+                                     ToolTip="Delete Selected Elements">
+                <Image Source="pack://application:,,,/RadialApplication;component/icons/delete.png" Height="28"/>
+            </Controls:RadialMenuItem>
+            <Controls:RadialMenuItem Style="{DynamicResource FancyRadialMenuItem}" 
+                                     ToolTip="Load Family">
+                <Image Source="pack://application:,,,/RadialApplication;component/icons/Load_Family.png" Height="28"/>
+            </Controls:RadialMenuItem>
+            <Controls:RadialMenuItem Style="{DynamicResource FancyRadialMenuItem}" 
+                                     ToolTip="Place Component">
+                <Image Source="pack://application:,,,/RadialApplication;component/icons/server_components.png" Height="28"/>
+            </Controls:RadialMenuItem>
+            <Controls:RadialMenuItem Style="{DynamicResource FancyRadialMenuItem}" 
+                                     ToolTip="Rotate">
+                <Image Source="pack://application:,,,/RadialApplication;component/icons/shape_rotate_clockwise.png" Height="28"/>
+            </Controls:RadialMenuItem>
+            <Controls:RadialMenuItem Style="{DynamicResource FancyRadialMenuItem}" 
+                                     ToolTip="Create Window">
+                <Image Source="pack://application:,,,/RadialApplication;component/icons/window.png" Height="28"/>
+            </Controls:RadialMenuItem>
+
+        </Controls:RadialMenu>
+
+
+    </Grid>
+    <Window.Resources>
+        <!--A Style that affects all Close Item-->
+        <Style x:Key="FancyRadialMenuCentralItem" TargetType="Controls:RadialMenuCentralItem" BasedOn="{StaticResource {x:Type Controls:RadialMenuCentralItem}}">
+
+            <Setter Property="Background" Value="DarkRed"/>
+            <Setter Property="Opacity" Value="0.8"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="4"/>
+            <Setter Property="Width" Value="52"/>
+            <Setter Property="Height" Value="52"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGreen"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--A Style that affects all other Item-->
+        <Style x:Key="FancyRadialMenuItem" TargetType="Controls:RadialMenuItem" BasedOn="{StaticResource {x:Type Controls:RadialMenuItem}}">
+
+            <Setter Property="Background" Value="LightSlateGray"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="InnerRadius" Value="40"/>
+            <Setter Property="OuterRadius" Value="110"/>
+            <Setter Property="ContentRadius" Value="75"/>
+
+            <Setter Property="EdgeBackground" Value="Transparent"/>
+            <Setter Property="EdgePadding" Value="7"/>
+            <Setter Property="EdgeInnerRadius" Value="115"/>
+            <Setter Property="EdgeOuterRadius" Value="130"/>
+
+            <Setter Property="ArrowBackground" Value="DarkOrange"/>
+            <Setter Property="ArrowRadius" Value="122"/>
+
+        </Style>
+        <!--A Style that affects all other tooltips-->
+        <Style TargetType="ToolTip">
+            <Style.Resources>
+                <Style TargetType="ContentPresenter">
+                    <Style.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                            <Setter Property="FontFamily" Value="Stylus BT" />
+                            <Setter Property="FontWeight" Value="UltraBold" />
+                            <Setter Property="FontSize" Value="15" />
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </Style.Resources>
+            <Setter Property="MaxWidth" Value="500" />
+            <Setter Property="Background" Value="LightYellow" />
+            <Setter Property="Opacity" Value="0.5"/>
+        </Style>
+    </Window.Resources>
+</Window>
+   
